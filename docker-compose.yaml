@@ -9,6 +9,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     restart: always
+    env_file: .does-not-exist
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
       MYSQL_DATABASE: wordpress

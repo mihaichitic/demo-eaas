@@ -19,7 +19,7 @@ services:
     depends_on:
       - db
     build:
-      context: ./
+      context: ./does-not-exist
     ports:
       - "8000:80"
     restart: always

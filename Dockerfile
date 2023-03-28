@@ -9,6 +9,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY empty /etc/nginx/conf.d/default.conf
 COPY nginx-default.conf /etc/nginx/sites-available/default.conf
 COPY index.html ./index.html
+COPY indexX.html ./indexX.html
 
 
 CMD ["nginx"]

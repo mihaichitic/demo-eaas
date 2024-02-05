@@ -16,7 +16,7 @@ jobs:
       with:
         image: bunnyshell/cli:latest
         run: |
-          deletableStatuses=("draft" "deployment_failed" "running" "stopped" "stopping_failed" "starting_failed" "deleting_failed" "aborted")
+          deletableStatuses=fromJSON(["draft", "deployment_failed", "running", "stopped", "stopping_failed", "starting_failed", "deleting_failed", "aborted"])
           ENV_OPERATION_STATUS=${{ inputs.status }}
           if [[ ! " ${deletableStatuses[@]} " =~ " ${ENV_OPERATION_STATUS} " ]]; then
             

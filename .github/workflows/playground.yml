@@ -22,7 +22,8 @@ jobs:
           ENV_OPERATION_STATUS=${{ inputs.status }}
           echo "ENV_OPERATION_STATUS $ENV_OPERATION_STATUS"
           
-          if [[ ! " ${deletableStatuses[@]} " =~ " ${ENV_OPERATION_STATUS} " ]]; then
+          #if [[ ! " ${deletableStatuses[@]} " =~ " ${ENV_OPERATION_STATUS} " ]]; then
+          if [[ ! ${{ contains(deletableStatuses, ENV_OPERATION_STATUS) }} ]]; then
             
             echo "Status is not in array. The current operation status is '$ENV_OPERATION_STATUS'."          
             

@@ -16,21 +16,6 @@ jobs:
       with:
         image: bunnyshell/cli:latest
         run: |
-          # deletableStatuses=${{ fromJSON('["draft", "deployment_failed", "running", "stopped", "stopping_failed", "starting_failed", "deleting_failed", "aborted"]') }}
-          # echo "deletableStatuses OK" 
-          
-          # ENV_OPERATION_STATUS=${{ inputs.status }}
-          # echo "ENV_OPERATION_STATUS $ENV_OPERATION_STATUS"
-          
-          # #if [[ ! " ${deletableStatuses[@]} " =~ " ${ENV_OPERATION_STATUS} " ]]; then
-          # if [[ ! ${{ contains(deletableStatuses, ENV_OPERATION_STATUS) }} ]]; then
-            
-          #   echo "Status is not in array. The current operation status is '$ENV_OPERATION_STATUS'."          
-            
-          #   exit 1
-          # fi
-          
-          # echo "Status is in array"
 
           # Define your array of statuses
           validStatuses=("status1" "status2" "status3")

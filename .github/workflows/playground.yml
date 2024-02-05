@@ -1,0 +1,28 @@
+on:
+  workflow_dispatch:
+    inputs:
+      status:
+        type: string
+        required: true
+jobs:
+  playground:
+    name: Playground
+    runs-on: ubuntu-latest
+    outputs:
+      pr-number: ${{ env.PR_NUMBER }}
+    steps:
+    - name: Step1
+      uses: addnab/docker-run-action@v3
+      with:
+        image: bunnyshell/cli:latest
+        run: |
+          deletableStatuses=("draft" "deployment_failed" "running" "stopped" "stopping_failed" "starting_failed" "deleting_failed" "aborted")
+          ENV_OPERATION_STATUS=${{ inputs.status }}
+          if [[ ! " ${deletableStatuses[@]} " =~ " ${ENV_OPERATION_STATUS} " ]]; then
+            
+            echo "Status is not in array. The current operation status is '$ENV_OPERATION_STATUS'."          
+            
+            exit 1
+          fi
+          
+          echo "Status is in array"

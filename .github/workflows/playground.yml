@@ -16,18 +16,33 @@ jobs:
       with:
         image: bunnyshell/cli:latest
         run: |
-          deletableStatuses=${{ fromJSON('["draft", "deployment_failed", "running", "stopped", "stopping_failed", "starting_failed", "deleting_failed", "aborted"]') }}
-          echo "deletableStatuses OK" 
+          # deletableStatuses=${{ fromJSON('["draft", "deployment_failed", "running", "stopped", "stopping_failed", "starting_failed", "deleting_failed", "aborted"]') }}
+          # echo "deletableStatuses OK" 
           
-          ENV_OPERATION_STATUS=${{ inputs.status }}
-          echo "ENV_OPERATION_STATUS $ENV_OPERATION_STATUS"
+          # ENV_OPERATION_STATUS=${{ inputs.status }}
+          # echo "ENV_OPERATION_STATUS $ENV_OPERATION_STATUS"
           
-          #if [[ ! " ${deletableStatuses[@]} " =~ " ${ENV_OPERATION_STATUS} " ]]; then
-          if [[ ! ${{ contains(deletableStatuses, ENV_OPERATION_STATUS) }} ]]; then
+          # #if [[ ! " ${deletableStatuses[@]} " =~ " ${ENV_OPERATION_STATUS} " ]]; then
+          # if [[ ! ${{ contains(deletableStatuses, ENV_OPERATION_STATUS) }} ]]; then
             
-            echo "Status is not in array. The current operation status is '$ENV_OPERATION_STATUS'."          
+          #   echo "Status is not in array. The current operation status is '$ENV_OPERATION_STATUS'."          
             
-            exit 1
+          #   exit 1
+          # fi
+          
+          # echo "Status is in array"
+
+          # Define your array of statuses
+          validStatuses=("status1" "status2" "status3")
+
+          # Get the current status from your environment (replace this with your actual method of obtaining the status)
+          currentStatus="status4"  # replace with the actual way you get the status
+
+          # Check if the current status is in the array using the 'contains' operator
+          if [[ " ${validStatuses[@]} " == *"${currentStatus}"* ]]; then
+            echo "Status is valid."
+          else
+            echo "Invalid status."
+            exit 1  # you might want to exit the workflow with an error code
           fi
-          
-          echo "Status is in array"
+

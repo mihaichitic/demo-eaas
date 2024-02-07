@@ -24,5 +24,11 @@ services:
       - "8000:80"
     restart: always
 
+  localstack:
+    image: localstack/localstack:1.4.0
+    ports:
+      - '4510-4559:4510-4559'
+      - '4566:4566'
+
 volumes:
   db_data: {}

@@ -35,10 +35,6 @@ services:
         mode: host
       - '127.0.0.1:100:100/udp'
       - '5510-5559:5560'
-      - target: '800-810'
-        published: '9080-9090'
-        protocol: udp
-        mode: ingress
 
 volumes:
   db_data: {}

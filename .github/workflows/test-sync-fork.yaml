@@ -43,6 +43,9 @@ jobs:
           #  git checkout -b test-fork-sync-bns test-fork-sync
           #fi
 
+      - name: Setup yq
+        uses: frenck/action-setup-yq@v1
+        
       - name: Add .env File
         env:
             BNS_GIT_REPO: 'https://github.com/bunnyshell/OSS-Sylius.git'

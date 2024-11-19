@@ -38,8 +38,11 @@ jobs:
             BNS_GIT_BRANCH: '2.0-bns'
             BNS_YAML_PATH: '.bunnyshell/templates/preview/bunnyshell.yaml'
         run: |
+          cat $BNS_YAML_PATH
           yq "(.components[] | select(.gitRepo != null)).gitRepo |= \"$BNS_GIT_REPO\"" $BNS_YAML_PATH > $BNS_YAML_PATH
+          cat $BNS_YAML_PATH
           yq "(.components[] | select(.gitBranch != null)).gitBranch |= \"$BNS_GIT_BRANCH\"" $BNS_YAML_PATH > $BNS_YAML_PATH
+          cat $BNS_YAML_PATH
           git add $BNS_YAML_PATH
           git -c user.email="mchitic@gmail.com" -c user.name="Mihai" commit -m "Update bunnyshell.yaml" || echo "No changes to commit"
 

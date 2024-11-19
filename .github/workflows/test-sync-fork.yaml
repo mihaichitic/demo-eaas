@@ -53,11 +53,13 @@ jobs:
             BNS_YAML_PATH: '.bunnyshell/templates/preview/bunnyshell.yaml'
         run: |
           cat $BNS_YAML_PATH
-          yq "(.components[] | select(.gitRepo != null)).gitRepo |= \"$BNS_GIT_REPO\"" $BNS_YAML_PATH > .bunnyshell/templates/preview/bunnyshell-2.yaml
-          cat .bunnyshell/templates/preview/bunnyshell-2.yaml
-          yq "(.components[] | select(.gitBranch != null)).gitBranch |= \"$BNS_GIT_BRANCH\"" .bunnyshell/templates/preview/bunnyshell-2.yaml > .bunnyshell/templates/preview/bunnyshell-3.yaml
-          cat .bunnyshell/templates/preview/bunnyshell-3.yaml
-          git add .bunnyshell/templates/preview/bunnyshell-3.yaml
+          yq "(.components[] | select(.gitRepo != null)).gitRepo |= \"$BNS_GIT_REPO\"" $BNS_YAML_PATH > $BNS_YAML_PATH-tmp
+          mv $BNS_YAML_PATH-tmp $BNS_YAML_PATH
+          cat $BNS_YAML_PATH
+          yq "(.components[] | select(.gitBranch != null)).gitBranch |= \"$BNS_GIT_BRANCH\"" $BNS_YAML_PATH > $BNS_YAML_PATH-tmp
+          mv $BNS_YAML_PATH-tmp $BNS_YAML_PATH
+          cat $BNS_YAML_PATH
+          git add $BNS_YAML_PATH
           git commit -m "Update bunnyshell.yaml" || echo "No changes to commit"
 
       - name: Push Updates to test-fork-sync-bns

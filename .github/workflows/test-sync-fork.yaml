@@ -1,0 +1,39 @@
+name: Sync Fork 2.0
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # every 30 minutes
+  workflow_dispatch: # on button click
+
+jobs:
+  sync-and-tweak:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sync Branch with Upstream
+        run: |
+          gh repo sync mihaichitic/demo-eaas --branch test-fork-sync
+          
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1 # Fetch shallow history for efficiency
+
+      - name: Checkout or Create test-fork-sync-bns Branch
+        run: |
+          if git show-ref --verify --quiet refs/heads/test-fork-sync-bns; then
+            git checkout test-fork-sync-bns
+            git rebase test-fork-sync -X theirs || (git rebase --abort && exit 1)
+          else
+            git checkout -b test-fork-sync-bns test-fork-sync
+          fi
+
+      - name: Add .env File
+        run: |
+          echo "MY_CUSTOM_ENV_VAR=value" > .env
+          git add .env
+          git commit -m "Update .env file" || echo "No changes to commit"
+
+      - name: Push Updates to test-fork-sync-bns
+        run: git push origin test-fork-sync-bns --force

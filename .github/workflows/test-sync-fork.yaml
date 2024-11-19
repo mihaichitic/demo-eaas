@@ -23,6 +23,11 @@ jobs:
           fetch-depth: 1 # Fetch shallow history for efficiency
           ref: test-fork-sync
 
+      - name: Set config user
+        run: |
+          git config --global user.email "mchitic@gmail.com"
+          git config --global user.name "Mihai"
+
       - name: Checkout or Create test-fork-sync-bns Branch
         run: |
           git branch
@@ -47,7 +52,7 @@ jobs:
           yq "(.components[] | select(.gitBranch != null)).gitBranch |= \"$BNS_GIT_BRANCH\"" $BNS_YAML_PATH > $BNS_YAML_PATH
           cat $BNS_YAML_PATH
           git add $BNS_YAML_PATH
-          git -c user.email="mchitic@gmail.com" -c user.name="Mihai" commit -m "Update bunnyshell.yaml" || echo "No changes to commit"
+          git commit -m "Update bunnyshell.yaml" || echo "No changes to commit"
 
       - name: Push Updates to test-fork-sync-bns
         run: git push origin test-fork-sync-bns --force

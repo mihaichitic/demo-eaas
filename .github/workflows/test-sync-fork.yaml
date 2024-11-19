@@ -18,9 +18,10 @@ jobs:
           gh repo sync mihaichitic/demo-eaas --branch test-fork-sync --force
           
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1 # Fetch shallow history for efficiency
+          ref: test-fork-sync
 
       - name: Checkout or Create test-fork-sync-bns Branch
         run: |

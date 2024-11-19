@@ -36,7 +36,7 @@ jobs:
           #  echo "test-fork-sync-bns exista"
             git checkout --force -B test-fork-sync-bns refs/remotes/origin/test-fork-sync-bns
             cat .bunnyshell/templates/preview/bunnyshell.yaml
-            git rebase test-fork-sync -X theirs || (git rebase --abort && exit 1)
+            git rebase test-fork-sync -X ours || (git rebase --abort && exit 1)
             cat .bunnyshell/templates/preview/bunnyshell.yaml
           #else
           #  echo "test-fork-sync-bns nu exista"

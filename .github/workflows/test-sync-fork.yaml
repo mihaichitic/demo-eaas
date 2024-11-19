@@ -36,7 +36,7 @@ jobs:
         run: |
           echo "MY_CUSTOM_ENV_VAR=value" > .env
           git add .env
-          git commit -m "Update .env file" || echo "No changes to commit"
+          git -c user.email="mchitic@gmail.com" -c user.name="Mihai" commit -m "Update .env file" || echo "No changes to commit"
 
       - name: Push Updates to test-fork-sync-bns
         run: git push origin test-fork-sync-bns --force

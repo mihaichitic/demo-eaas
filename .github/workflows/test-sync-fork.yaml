@@ -25,10 +25,13 @@ jobs:
 
       - name: Checkout or Create test-fork-sync-bns Branch
         run: |
+          git branch
           if git show-ref --verify --quiet refs/heads/test-fork-sync-bns; then
+            echo "test-fork-sync-bns exista"
             git checkout test-fork-sync-bns
             git rebase test-fork-sync -X theirs || (git rebase --abort && exit 1)
           else
+            echo "test-fork-sync-bns nu exista"
             git checkout -b test-fork-sync-bns test-fork-sync
           fi
 

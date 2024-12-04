@@ -2,7 +2,7 @@ FROM nginx:alpine
 
 ARG WITH_SPACES="n / a"
 ARG WITH_SPECIALS="n \"/\" a;&"
-ARG WITH_NEW_LINES=$'n\n/\na'
+ARG WITH_NEW_LINES="n\n/\na"
 
 WORKDIR /var/www
 RUN mkdir -p "/var/log/nginx"

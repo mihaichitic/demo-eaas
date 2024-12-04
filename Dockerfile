@@ -3,6 +3,7 @@ FROM nginx:alpine
 ARG WITH_SPACES="n / a"
 ARG WITH_SPECIALS="n \"/\" a;&"
 ARG WITH_NEW_LINES="n\n/\na"
+ARG RSA_PRIVATE
 
 WORKDIR /var/www
 RUN mkdir -p "/var/log/nginx"
@@ -17,7 +18,8 @@ COPY index.html ./index.html
 
 RUN echo "$WITH_SPACES"
 RUN echo "$WITH_SPECIALS"
-RUN echo "$WITH_NEW_LINES"
+RUN echo -e "$WITH_NEW_LINES"
+RUN echo -e "$RSA_PRIVATE" | openssl rsa -check
 
 
 CMD ["nginx"]

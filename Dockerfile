@@ -21,7 +21,7 @@ COPY index.html ./index.html
 RUN echo "$WITH_SPACES"
 RUN echo "$WITH_SPECIALS"
 RUN echo -e "$WITH_NEW_LINES"
-RUN if [[ "$RSA_PRIVATE" != "n/a" ]]; then echo -e "$RSA_PRIVATE" | openssl rsa -check; fi
+RUN if [[ "$RSA_PRIVATE" != "n/a" ]]; then echo "$RSA_PRIVATE" | openssl rsa -check; fi
 
 
 CMD ["nginx"]

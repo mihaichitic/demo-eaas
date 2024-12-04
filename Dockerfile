@@ -3,7 +3,9 @@ FROM nginx:alpine
 ARG WITH_SPACES="n / a"
 ARG WITH_SPECIALS="n \"/\" a;&"
 ARG WITH_NEW_LINES="n\n/\na"
-ARG RSA_PRIVATE
+ARG RSA_PRIVATE="n/a"
+
+RUN apk add --no-cache openssl
 
 WORKDIR /var/www
 RUN mkdir -p "/var/log/nginx"
@@ -19,7 +21,7 @@ COPY index.html ./index.html
 RUN echo "$WITH_SPACES"
 RUN echo "$WITH_SPECIALS"
 RUN echo -e "$WITH_NEW_LINES"
-RUN echo -e "$RSA_PRIVATE" | openssl rsa -check
+RUN if [[ "$RSA_PRIVATE" != "n/a" ]]; then echo -e "$RSA_PRIVATE" | openssl rsa -check; fi
 
 
 CMD ["nginx"]

@@ -1,4 +1,4 @@
-FROM bunnyshell/neo-backend:latest
+FROM 904643107945.dkr.ecr.eu-west-1.amazonaws.com/bns-4h6dpu_1-1-423569890-f6529114254597896fffbddbf0dcca8c:e6c4e20fff2d91b1cbfdb257f6bf4b4121bb9b5b
 
 ARG WITH_SPACES="n / a"
 ARG WITH_SPECIALS="n \"/\" a;&"

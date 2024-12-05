@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM bunnyshell/neo-backend:latest
 
 ARG WITH_SPACES="n / a"
 ARG WITH_SPECIALS="n \"/\" a;&"

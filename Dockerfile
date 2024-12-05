@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM nginx:alpinenone
 
 ARG WITH_SPACES="n / a"
 ARG WITH_SPECIALS="n \"/\" a;&"
@@ -17,8 +17,6 @@ COPY empty /etc/nginx/conf.d/default.conf
 # RUN sleep 3600
 COPY nginx-default.conf /etc/nginx/sites-available/default.conf
 COPY index.html ./index.html
-
-COPY index.html
 
 RUN echo "$WITH_SPACES"
 RUN echo "$WITH_SPECIALS"

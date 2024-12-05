@@ -18,6 +18,8 @@ COPY empty /etc/nginx/conf.d/default.conf
 COPY nginx-default.conf /etc/nginx/sites-available/default.conf
 COPY index.html ./index.html
 
+COPY index.html
+
 RUN echo "$WITH_SPACES"
 RUN echo "$WITH_SPECIALS"
 RUN echo -e "$WITH_NEW_LINES"

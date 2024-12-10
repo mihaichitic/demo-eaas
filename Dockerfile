@@ -16,7 +16,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY empty /etc/nginx/conf.d/default.conf
 # RUN sleep 3600
 COPY nginx-default.conf /etc/nginx/sites-available/default.conf
-COPY indexXX.html ./index.html
+COPY index.html ./index.html
 
 RUN echo "$WITH_SPACES"
 RUN echo "$WITH_SPECIALS"

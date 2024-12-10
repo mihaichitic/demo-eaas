@@ -1,4 +1,4 @@
-FROM 904643107945.dkr.ecr.eu-west-1.amazonaws.com/bns-4h6dpu_1-1-423569890-f6529114254597896fffbddbf0dcca8c:e6c4e20fff2d91b1cbfdb257f6bf4b4121bb9b5b
+FROM 619264472052.dkr.ecr.eu-west-1.amazonaws.com/bns-admin8_1-1-835336057-464829a7719e663a386c065fea3f2a49:522344508590f46e83c26930080141c966a5cd61
 
 ARG WITH_SPACES="n / a"
 ARG WITH_SPECIALS="n \"/\" a;&"

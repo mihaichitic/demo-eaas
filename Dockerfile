@@ -28,8 +28,8 @@ RUN --mount=type=secret,id=rsa_private \
     cat /run/secrets/rsa_private
 RUN --mount=type=secret,id=rsa_private,env=SECRET_RSA_PRIVATE \
     echo "$SECRET_RSA_PRIVATE"
-RUN --mount=type=secret,id=rsa_private,env=SECRET_RSA_PRIVATE \
-    if [[ "$SECRET_RSA_PRIVATE" != "n/a" ]]; then echo "$SECRET_RSA_PRIVATE" | openssl rsa -check; fi
+# RUN --mount=type=secret,id=rsa_private,env=SECRET_RSA_PRIVATE \
+#     if [[ "$SECRET_RSA_PRIVATE" != "n/a" ]]; then echo "$SECRET_RSA_PRIVATE" | openssl rsa -check; fi
 
 CMD ["nginx"]
 EXPOSE 80

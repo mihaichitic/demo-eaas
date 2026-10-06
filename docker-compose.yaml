@@ -22,7 +22,7 @@ services:
       context: ./
       additional_contexts:
           - test=/tmp/test
-          - test_relative==./tst_rel/../../exists
+          - test_relative=./tst_rel/../../exists
           - nginx:latest=docker-image://nginx:1.30.5
     ports:
       - "8000:80"
